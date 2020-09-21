@@ -20,8 +20,9 @@ public class Mario extends Objeto{
         sprite.setPosition(x,y);
 
         //Animcion
-        TextureRegion[] arrFrames = {texturaFrame[0][1],texturaFrame[0][2],texturaFrame[0][3]};
-        animacion = new Animation<TextureRegion>(0.1f,arrFrames);
+        TextureRegion[] arrFrames = {texturaFrame[0][3],texturaFrame[0][2],texturaFrame[0][1]};
+        animacion = new Animation<TextureRegion>(0.1f,arrFrames); //velocidad
+        animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
     }
 
