@@ -29,6 +29,9 @@ public class PantallaSpaceInvaders extends Pantalla {
     private Texture texturebtnDisparo;
     private Bala bala;
     private Texture texturaBala;
+    private Texture texturaAlienArriba;
+    private Texture texturaAlienAbajo;
+    private Texture texturaAlienMuriendo;
 
     private final Juego juego;
     public PantallaSpaceInvaders(Juego juego) {
@@ -47,23 +50,23 @@ public class PantallaSpaceInvaders extends Pantalla {
     }
 
     private void crearBala() {
-        texturaBala = new Texture("space/bala.png");
+        texturaBala =  (Texture)this.juego.getManager().get("space/bala.png");
     }
 
     private void crearDisparo() {
-        texturebtnDisparo = new Texture("space/disparo.png");
+        texturebtnDisparo = (Texture)this.juego.getManager().get("space/disparo.png");
     }
 
     private void crerNave() {
-        texturaNave = new Texture("space/nave.png");
+        texturaNave = (Texture)this.juego.getManager().get("space/nave.png");
         nave = new Nave(texturaNave,ANCHO/2,ALTO*0.1F);
 
     }
 
     private void crearAliens() {
-        Texture texturaAlienArriba = new Texture("space/enemigoArriba.png");
-        Texture texturaAlienAbajo = new Texture("space/enemigoAbajo.png");
-        Texture texturaAlienMuriendo = new Texture("space/enemigoExplota.png");
+        texturaAlienArriba = (Texture) this.juego.getManager().get("space/enemigoArriba1.png");
+        texturaAlienAbajo = (Texture)this.juego.getManager().get("space/enemigoAbajo.png");
+        texturaAlienMuriendo = (Texture)this.juego.getManager().get("space/enemigoExplota.png");
         arraAliens = new Array<>(12*5);
         for(int i=0; i<5; i++){ //renglones, y
             for(int j=0; j<12; j++){ //columnas, x

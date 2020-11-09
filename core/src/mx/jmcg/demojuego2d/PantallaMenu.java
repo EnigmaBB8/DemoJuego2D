@@ -14,77 +14,56 @@ import com.badlogic.gdx.utils.Align;
 import mx.jmcg.demojuego2d.Plataformas.PantallaMapas;
 
 public class PantallaMenu extends Pantalla {
-
-    private final Juego juego;  //para setScreen
-    //Fondo
+    private final Juego juego;
     private Texture texturaFondo;
-    //Menu (botones)
-    private Stage escenarioMenu;
+    private Stage escenaMenu;
 
     public PantallaMenu(Juego juego) {
         this.juego = juego;
     }
-    // Cuando la pantalla se va a mostrar
-    //Inicializamos los objetos
-    @Override
-    public void show() {
-        texturaFondo = new Texture("fondo.jpg");
 
-        crearMenu();
+    public void show() {
+        this.texturaFondo = (Texture)this.juego.getManager().get("fondo.jpg");
+        this.crearMenu();
     }
 
     private void crearMenu() {
-        escenarioMenu = new Stage(vista);
-
-        //boton jugar
-        Texture textureBtnJugar = new Texture("BotonesMenu/btnjugar.png");
-        TextureRegionDrawable trdBtnJugar = new TextureRegionDrawable(new TextureRegion(textureBtnJugar));
-        Texture textureBtnJugarInverso = new Texture("BotonesMenu/btnjugar2.png");
-        TextureRegionDrawable trdBtnJugarInverso = new TextureRegionDrawable(new TextureRegion(textureBtnJugarInverso));
-
-        ImageButton btnJugar = new ImageButton(trdBtnJugar,trdBtnJugarInverso);
-        btnJugar.setPosition(ANCHO/2,ALTO/2, Align.center);
-
-        //Programar el evento de click
-        btnJugar.addListener(new ClickListener(){
-            @Override
+        this.escenaMenu = new Stage(this.vista);
+        Texture texturaBtnJugar = (Texture)this.juego.getManager().get("BotonesMenu/btnjugar.png");
+        
+        TextureRegionDrawable trdBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
+        Texture texturaBtnJugarInverso = (Texture)this.juego.getManager().get("BotonesMenu/btnjugar2.png");
+        TextureRegionDrawable trdBtnJugarInverso = new TextureRegionDrawable(new TextureRegion(texturaBtnJugarInverso));
+        ImageButton btnJugar = new ImageButton(trdBtnJugar, trdBtnJugarInverso);
+        btnJugar.setPosition(640.0F, 360.0F, 1);
+        btnJugar.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                //cambiamos de pantalla
-                //juego.setScreen(new PantallaSpaceInvaders(juego)); //Para que pueda salir
-                //juego.setScreen(new PantallaRunner(juego));
-                juego.setScreen(new PantallaMapas(juego));
+                PantallaMenu.this.juego.setScreen(new PantallaSpaceInvaders(PantallaMenu.this.juego));
             }
         });
-
-        escenarioMenu.addActor(btnJugar);
-
-        Gdx.input.setInputProcessor(escenarioMenu);
+        this.escenaMenu.addActor(btnJugar);
+        Gdx.input.setInputProcessor(this.escenaMenu);
     }
 
-    @Override
     public void render(float delta) {
-        borrarPantalla();
-        batch.setProjectionMatrix(camara.combined); //escalar la info
-        batch.begin();
-        batch.draw(texturaFondo,0,0);
-        batch.end();
-        escenarioMenu.draw();
+        this.borrarPantalla();
+        this.batch.setProjectionMatrix(this.camara.combined);
+        this.batch.begin();
+        this.batch.draw(this.texturaFondo, 0.0F, 0.0F);
+        this.batch.end();
+        this.escenaMenu.draw();
     }
 
-    @Override
     public void pause() {
-
     }
 
-    @Override
     public void resume() {
-
     }
 
-    @Override
     public void dispose() {
-        texturaFondo.dispose();
-        batch.dispose();
+        this.texturaFondo.dispose();
+        this.batch.dispose();
     }
 }
+
