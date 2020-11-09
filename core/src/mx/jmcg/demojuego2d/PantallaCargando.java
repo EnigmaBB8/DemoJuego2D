@@ -34,6 +34,10 @@ public class PantallaCargando extends Pantalla {
         switch(siguientePantalla) {
             case MENU:
                 this.cargarRecursosMenu();
+                break;
+            case SPACE_INVADERS:
+                this.cargarRecursosSpace();
+                break;
         }
 
     }
@@ -74,8 +78,10 @@ public class PantallaCargando extends Pantalla {
             switch(this.siguientePantalla) {
                 case MENU:
                     this.juego.setScreen(new PantallaMenu(this.juego));
+                    break;
                 case SPACE_INVADERS:
                     this.juego.setScreen(new PantallaSpaceInvaders(this.juego));
+                    break;
             }
         }
         this.avance = (int)(this.manager.getProgress() * 100.0F);

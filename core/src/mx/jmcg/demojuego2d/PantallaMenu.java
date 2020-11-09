@@ -30,16 +30,16 @@ public class PantallaMenu extends Pantalla {
     private void crearMenu() {
         this.escenaMenu = new Stage(this.vista);
         Texture texturaBtnJugar = (Texture)this.juego.getManager().get("BotonesMenu/btnjugar.png");
-        
         TextureRegionDrawable trdBtnJugar = new TextureRegionDrawable(new TextureRegion(texturaBtnJugar));
         Texture texturaBtnJugarInverso = (Texture)this.juego.getManager().get("BotonesMenu/btnjugar2.png");
+
         TextureRegionDrawable trdBtnJugarInverso = new TextureRegionDrawable(new TextureRegion(texturaBtnJugarInverso));
         ImageButton btnJugar = new ImageButton(trdBtnJugar, trdBtnJugarInverso);
         btnJugar.setPosition(640.0F, 360.0F, 1);
         btnJugar.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                PantallaMenu.this.juego.setScreen(new PantallaSpaceInvaders(PantallaMenu.this.juego));
+                juego.setScreen(new PantallaCargando(juego,Pantallas.SPACE_INVADERS));
             }
         });
         this.escenaMenu.addActor(btnJugar);
@@ -63,6 +63,7 @@ public class PantallaMenu extends Pantalla {
 
     public void dispose() {
         this.texturaFondo.dispose();
+        juego.getManager().unload("fondo.jpg");
         this.batch.dispose();
     }
 }

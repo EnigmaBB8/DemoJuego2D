@@ -18,7 +18,7 @@ public class Juego extends Game {
 
 	public void create() {
 		this.manager = new AssetManager();
-		this.setScreen(new PantallaCargando(this, Pantallas.MENU));
+		setScreen(new PantallaCargando(this, Pantallas.MENU));
 	}
 
 	public AssetManager getManager() {
