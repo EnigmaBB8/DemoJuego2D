@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -18,8 +20,6 @@ public class PantallaSpaceInvaders extends Pantalla {
     private float DX_ALIEN = 10; //Cambia de + a -
     private float DY_ALIEN = 60;
     private int pasoAliens = 10;  //0-20 inicia en el cenro
-
-
 
     //Nave
     private Nave nave;
@@ -117,7 +117,7 @@ public class PantallaSpaceInvaders extends Pantalla {
                 alien.moverHorizontal(DX_ALIEN);
             }
             timerAnimaAlien = 0; //Reinicia el conteo
-            //Quitar Aliens MURIENDO
+            //Quitar Aliens MURIENDOe
             for(int i = arraAliens.size-1; i>=0; i--){
                 if(arraAliens.get(i).getEstado() == EstadoAlien.MURIENDO){
                     arraAliens.removeIndex(i);
@@ -140,14 +140,13 @@ public class PantallaSpaceInvaders extends Pantalla {
         if(bala!= null) {
             for (int i = arraAliens.size - 1; i >= 0; i--) {
                 Alien alien = arraAliens.get(i);
+                Object rectangle = null;
 
                 Rectangle rectAlien = alien.sprite.getBoundingRectangle();
                 Rectangle rectBala = bala.sprite.getBoundingRectangle();
-
                 if (rectAlien.overlaps(rectBala)) {
                     //Colision
                     if(alien.getEstado()!=EstadoAlien.MURIENDO){
-                        //arraAliens.removeIndex(i);
                         alien.setEstado(EstadoAlien.MURIENDO);
                         bala = null;
                         break;

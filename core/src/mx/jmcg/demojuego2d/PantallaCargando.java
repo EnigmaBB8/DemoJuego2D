@@ -14,6 +14,7 @@ public class PantallaCargando extends Pantalla {
     private Pantallas siguientePantalla;
     private int avance;
     private Texto texto;
+    private Texture texturaFondo;
 
     public PantallaCargando(Juego juego, Pantallas siguientePantalla) {
         this.juego = juego;
@@ -21,6 +22,7 @@ public class PantallaCargando extends Pantalla {
     }
 
     public void show() {
+        this.texturaFondo = new Texture("cargando/loading21.png");
         this.texturaCargando = new Texture("cargando/loading.png");
         this.spriteCargando = new Sprite(this.texturaCargando);
         this.spriteCargando.setPosition(640.0F - this.spriteCargando.getWidth() / 2.0F, 360.0F - this.spriteCargando.getHeight() / 2.0F);
@@ -61,6 +63,7 @@ public class PantallaCargando extends Pantalla {
         this.borrarPantalla(0.5F, 0.2F, 0.5F);
         this.batch.setProjectionMatrix(this.camara.combined);
         this.batch.begin();
+        this.batch.draw(this.texturaFondo, 0.0F, 0.0F);
         this.spriteCargando.draw(this.batch);
         this.texto.mostrarMensaje(this.batch, this.avance + "%", 640.0F, 360.0F);
         this.batch.end();

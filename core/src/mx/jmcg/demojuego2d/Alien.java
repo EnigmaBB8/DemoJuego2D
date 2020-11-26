@@ -46,6 +46,7 @@ public class Alien extends Objeto{
     public void moverHorizontal(float dx_alien) {
         sprite.setX(sprite.getX()+dx_alien);
     }
+
     public void moverVertical(float dy_alien){
         sprite.setY(sprite.getY()+dy_alien);
     }
